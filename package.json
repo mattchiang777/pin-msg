@@ -1,0 +1,33 @@
+{
+  "name": "pin-msg",
+  "version": "1.0.0",
+  "description": "Prototype for pinning messages on facebook.com chat",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "production": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattchiang777/pin-msg.git"
+  },
+  "author": "Matthew Chiang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattchiang777/pin-msg/issues"
+  },
+  "homepage": "https://github.com/mattchiang777/pin-msg#readme",
+  "dependencies": {
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-router": "^2.0.0-rc5"
+  },
+  "devDependencies": {
+    "babel-core": "^6.8.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-react": "^6.5.0",
+    "html-webpack-plugin": "^2.16.1",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
