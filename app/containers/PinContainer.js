@@ -8,7 +8,7 @@ var PinContainer = React.createClass({
         return (
             <span>
                 <img src="./app/data/images/icon-actions.png"
-                     onClick={this.handleClick}/>
+                     />
             </span>
         );
     }

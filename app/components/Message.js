@@ -1,21 +1,8 @@
 var React = require('react');
 var PinContainer = require('../containers/PinContainer');
 
-function getAndFormatCurrentDate(date) {
-    var d = new Date();
-    var hours = d.getHours();
-    var minutes = d.getMinutes();
-    var amOrPm = "am";
-
-    // convert to readable am/pm format
-    if (hours > 12) {
-        hours -= 12;
-        amOrPm = "pm";
-    }
-    return hours + ":" + minutes + amOrPm; // converts num to str automatically
-}
-
 function ProfilePicture(props) {
+    // hard-coded
     return (
         <img src="./app/data/images/matthewchiang.jpg"/>
     )
@@ -31,7 +18,9 @@ function MessageText(props) {
 
 var Message = React.createClass({
     getInitialState: function() {
-        return {hover: false};
+        return { hover: false,
+                 pinned: false
+        };
     },
     mouseOver: function() {
         this.setState({hover: true});
@@ -39,22 +28,37 @@ var Message = React.createClass({
     mouseOut: function() {
         this.setState({hover: false});
     },
+    handleClick: function() {
+        // if pinned, highlight the pin icon -- Functionality of toggling causing a message to be pinned or unpinned is missing right now
+        this.setState({pinned: !this.state.pinned});
+        this.props.onClickPin();
+    },
     render: function() {
         return (
-            <div >
+            <div>
                 <ProfilePicture />
                 <div>{this.props.senderName}</div>
                 <div onMouseEnter={this.mouseOver}
                      onMouseLeave={this.mouseOut}>
                     <MessageText text={this.props.text} />
-                    { this.state.hover ? <PinContainer text={this.props.text} /> : null }
+                    { this.state.hover ? <img src="./app/data/images/icon-actions.png"
+                                              onClick={this.handleClick} /> : null }
                 </div>
                 <div>
-                    {getAndFormatCurrentDate()}
+                    {this.props.dateSent}
                 </div>
             </div>
         )
     }
 });
+
+/*
+ onClickPin={boundClick}
+ text={message}
+ key={i}
+ senderName="Matthew Chiang"
+ dateSent={utils.getAndFormatCurrentDate()}
+ ref={'message' + i}
+ */
 
 module.exports = Message;

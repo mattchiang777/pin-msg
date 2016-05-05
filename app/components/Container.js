@@ -1,7 +1,8 @@
 /* Test static (no styling yet) components in the container first:
 
-    1. ContactsContainer
-X    2. ConversationSection
+X    1. ContactsContainer (unnecessary)
+
+X    2. ConversationContainer
 X    3. Header
 X    4. ToolBar
 X    5. NewMessage
@@ -21,12 +22,12 @@ X    13. SendMessageContainer and SendMessage (still need presentational contain
  */
 
 var React = require('react');
-var ConversationSection = require('./ConversationSection');
+var ConversationContainer = require('../containers/ConversationContainer');
 
 function Container() {
     return (
         <div>
-            <ConversationSection />
+            <ConversationContainer />
         </div>
     )
 }
