@@ -13,9 +13,9 @@ X    9. MessageText
 X    11. Message (date and time changes cause hover changes state so it causes a re-render)
 X    12. Pin[Icon]
 X    13. SendMessageContainer and SendMessage (still need presentational container despite X)
-    14. ViewPinnedMessages (combine with 15)
+X    14. ViewPinnedMessages (combine with 15)
     15. PinnedMessages (toolbar solution) (combine with 14 as ViewPinnedMessages)
-    16. PinnedMessagesList
+X    16. PinnedMessagesList
     17. RemoveIcon (the 'x')
     18. RemovePinnedMessageAlert
 

@@ -6,6 +6,11 @@ function addZero(i) {
 }
 
 var utils = {
+    // TODO Need to figure out a way to get unique keys
+    getUniqueKey: function() {
+
+        return new Date().getTime();
+    },
     getAndFormatCurrentDate: function(date) {
 
         var d = new Date();

@@ -1,6 +1,6 @@
 var React = require('react');
 var Header = require('./Header');
-// var ChatHistory = require('./ChatHistory');
+var ChatHistory = require('./ChatHistory');
 var SendMessageContainer = require('../containers/SendMessageContainer');
 var ViewPinnedMessages = require('./ViewPinnedMessages');
 
@@ -8,20 +8,23 @@ function Conversation(props) {
     return (
         <div>
             <Header />
-            <ViewPinnedMessages />
-
-            <SendMessageContainer chatLog={props.chatLog}
-                                  onTextChange={props.onTextChange}
+            <ViewPinnedMessages pinnedLog={props.pinnedLog}
+                                onClickPin={props.onClickPin}
+                                onUnclickPin={props.onUnclickPin} />
+            <ChatHistory chatLog={props.chatLog}
+                         onClickPin={props.onClickPin}
+                         onUnclickPin={props.onUnclickPin}
+                         senderName="Matthew Chiang" />
+            <SendMessageContainer onTextChange={props.onTextChange}
                                   onPressEnterKey={props.onPressEnterKey}
-                                  onClickSend={props.onClickSend}
-                                  onClickPin={props.onClickPin}
-                                  senderName="Matthew Chiang" />
+                                  onClickSend={props.onClickSend} />
         </div>
     )
 }
 
 /* props
  chatLog={this.state.chatLog}
+ pinnedLog={this.state.pinnedLog}
  onTextChange={this.handleChange}
  onPressEnterKey={this.handleKeyPress}
  onClickSend={this.handleClickSend}
