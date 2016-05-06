@@ -22,6 +22,8 @@ var utils = {
         if (hours > 12) {
             hours -= 12;
             amOrPm = "pm";
+        } else if (hours == 12) {
+            amOrPm = "pm"
         } else if (hours == 0) {
             hours += 12;
         }
