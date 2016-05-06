@@ -22,8 +22,7 @@ function MessageText(props) {
 
 var Message = React.createClass({
     getInitialState: function() {
-        return { hover: false,
-                 pinned: this.props.isPinned
+        return { hover: false
         };
     },
     mouseOver: function() {
@@ -33,13 +32,11 @@ var Message = React.createClass({
         this.setState({hover: false});
     },
     handleClick: function() {
-        this.setState({pinned: !this.state.pinned}, function() {
-            if (this.state.pinned) {
-                this.props.onClickPin(this.props); // binding/passing props
-            } else {
-                this.props.onUnclickPin(this.props);
-            }
-        });
+        if (this.props.isPinned) { // if it's pinned now, unpin it
+            this.props.onUnclickPin(this.props); // binding/passing props
+        } else { // if it's unpinned now, pin it
+            this.props.onClickPin(this.props);
+        };
     },
     render: function() {
         return (
@@ -50,7 +47,7 @@ var Message = React.createClass({
                 <div>
                     <MessageText text={this.props.text} />
 
-                    { !this.state.pinned ? // check if it's pinned first, then if it's being hovered on. if it's pinned, then leave the icon highlighted
+                    { !this.props.isPinned ? // check if it's pinned first, then if it's being hovered on. if it's pinned, then leave the icon highlighted
                             this.state.hover ? <img src="./app/data/images/icon-pin-hover.png"
                                               onClick={this.handleClick} />
                                 : null
@@ -61,7 +58,7 @@ var Message = React.createClass({
                 <div>
                     {this.props.dateSent}
                 </div>
-                { this.state.pinned && this.state.hover && this.props.inPinnedList ? <span onClick={this.handleClick}>X</span> : null }
+                { this.props.isPinned && this.state.hover && this.props.inPinnedList ? <span onClick={this.handleClick}>X</span> : null }
             </div>
         )
     }
