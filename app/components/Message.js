@@ -49,11 +49,11 @@ var Message = React.createClass({
     },
     render: function() {
         return (
-            <div>
+            <div onMouseEnter={this.mouseOver}
+                 onMouseLeave={this.mouseOut}>
                 <ProfilePicture />
                 <div>{this.props.senderName}</div>
-                <div onMouseEnter={this.mouseOver}
-                     onMouseLeave={this.mouseOut}>
+                <div>
                     <MessageText text={this.props.text} />
                     { !this.state.pinned ? // check if it's pinned first, then if it's being hovered on. if it's pinned, then leave the icon highlighted
                             this.state.hover ? <img src="./app/data/images/icon-pin-hover.png"
@@ -66,6 +66,7 @@ var Message = React.createClass({
                 <div>
                     {this.props.dateSent}
                 </div>
+                { this.state.pinned && this.state.hover && this.props.inPinnedList ? <span onClick={this.handleClick}>X</span> : null }
             </div>
         )
     }
@@ -79,6 +80,7 @@ Message.propTypes = {
     dateSent: PropTypes.string.isRequired,
 
     isPinned: PropTypes.bool,
+    inPinnedList: PropTypes.bool,
     messageKey: PropTypes.string
 };
 

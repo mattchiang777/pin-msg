@@ -6,7 +6,6 @@ var PinnedMessagesList = require('./PinnedMessagesList');
 function ViewPinnedMessages(props) {
     return (
         <div>
-            <div>View Pinned Messages</div>
             <PinnedMessagesList pinnedLog={props.pinnedLog}
                                 onClickPin={props.onClickPin}
                                 onUnclickPin={props.onUnclickPin} />

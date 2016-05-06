@@ -9,9 +9,11 @@ var PinnedMessagesList = React.createClass({
     },
     mouseOver: function() {
         this.setState({hover: true});
+        console.log("mouseover");
     },
     mouseOut: function() {
         this.setState({hover: false});
+        console.log("mouseout");
     },
     handleClickPin: function(i, props) {
         this.props.onClickPin(i, props);
@@ -24,17 +26,19 @@ var PinnedMessagesList = React.createClass({
             <div>
                 <h1>Pinned Messages List</h1>
                 {this.props.pinnedLog.map(function(messageObj, i) { // Re-read and understand how you're binding functions here
-                    // var mouseEnter = this.mouseOver;
-                    // var mouseLeave = this.mouseOut;
-                    // var hoverState = this.state.hover;
+                    var mouseEnter = this.mouseOver.bind(this, i);
+                    var mouseLeave = this.mouseOut.bind(this, i);
                     var boundClick = this.handleClickPin.bind(this, i);
                     var boundUnclick = this.handleUnclickPin.bind(this, i);
                     return (
-                        <div key={i}>
+                        <div key={i}
+                             onMouseEnter={mouseEnter}
+                             onMouseLeave={mouseLeave}>
                             <Message
                                 onClickPin={boundClick}
                                 onUnclickPin={boundUnclick}
                                 isPinned={true}
+                                inPinnedList={true}
                                 text={messageObj.message}
                                 messageKey={messageObj.message}
                                 senderName={messageObj.senderName}
