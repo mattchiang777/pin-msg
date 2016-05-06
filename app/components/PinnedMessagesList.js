@@ -9,11 +9,9 @@ var PinnedMessagesList = React.createClass({
     },
     mouseOver: function() {
         this.setState({hover: true});
-        console.log("mouseover");
     },
     mouseOut: function() {
         this.setState({hover: false});
-        console.log("mouseout");
     },
     handleClickPin: function(i, props) {
         this.props.onClickPin(i, props);
@@ -30,6 +28,7 @@ var PinnedMessagesList = React.createClass({
                     var mouseLeave = this.mouseOut.bind(this, i);
                     var boundClick = this.handleClickPin.bind(this, i);
                     var boundUnclick = this.handleUnclickPin.bind(this, i);
+                    console.log(messageObj.messageKey + "is now at ith spot: " + i);
                     return (
                         <div key={i}
                              onMouseEnter={mouseEnter}

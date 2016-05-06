@@ -32,6 +32,10 @@ var Message = React.createClass({
                  pinned: isPinned
         };
     },
+    componentWillReceiveNewProps: function(nextProps) {
+        var isPinned = nextProps.isPinned;
+        this.setState({ pinned: isPinned })
+    },
     mouseOver: function() {
         this.setState({hover: true});
     },

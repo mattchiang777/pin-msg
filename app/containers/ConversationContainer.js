@@ -29,22 +29,22 @@ var ConversationContainer = React.createClass({
         this.resetText();
     },
     // Handle pinning and unpinning messages
-    handleClickPin: function(i, props) {
+    handleClickPin: function(i, props) { // shit is happening here with the keys
         var currPinnedLog = this.state.pinnedLog;
         currPinnedLog.push({
             messageKey: props.messageKey,
             senderName: props.senderName,
-            message: this.state.chatLog[i]
+            message: props.text
         });
         this.setState({ pinnedLog: currPinnedLog});
     },
     handleUnclickPin: function(i, props) {
         // Remove from PinnedMessagesList
-        // console.log("going to unpin message with messageKey: " + props.messageKey);
 
         // Find the correct message here and remove it
         var currPinnedLog = this.state.pinnedLog;
         var updatedPinnedLog = currPinnedLog.filter(function(msg) {
+            console.log(props.messageKey);
             return msg.messageKey !== props.messageKey;
         });
 
