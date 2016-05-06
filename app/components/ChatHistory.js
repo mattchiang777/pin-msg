@@ -14,17 +14,19 @@ var ChatHistory = React.createClass({
         return (
             <div>
                 <h1>Chat History Bro</h1>
-                {this.props.chatLog.map(function (message, i) { // Re-read and understand how you're binding functions here
+                {this.props.chatLog.map(function (messageObj, i) { // Re-read and understand how you're binding functions here
                     var boundClick = this.handleClickPin.bind(this, i);
                     var boundUnclick = this.handleUnclickPin.bind(this, i);
+                    console.log(i + ": " + messageObj.isPinned);
                     return (
                         <Message onClickPin={boundClick}
                                  onUnclickPin={boundUnclick}
-                                 text={message}
+                                 text={messageObj.message}
                                  key={i}
-                                 messageKey={message}
+                                 isPinned={messageObj.isPinned}
+                                 messageKey={messageObj.message}
                                  senderName={this.props.senderName}
-                                 dateSent={utils.getAndFormatCurrentDate()} // rendering Messages on SendMessageContainer causes dateSent to be re-rendered
+                                 dateSent={messageObj.dateSent} // rendering Messages on SendMessageContainer causes dateSent to be re-rendered
                                  ref={'message' + i}>
                         </Message>
                     )

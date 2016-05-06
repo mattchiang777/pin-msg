@@ -6,7 +6,7 @@ var utils = require('../utils/utils');
 var PinnedMessagesList = React.createClass({
     getInitialState: function() {
         return { hover: false,
-                 open: false };
+                 isExpanded: false };
     },
     mouseOver: function() {
         this.setState({hover: true});
@@ -21,13 +21,13 @@ var PinnedMessagesList = React.createClass({
         this.props.onUnclickPin(i, props);
     },
     handleClickExpand: function() {
-        this.setState({ open: !this.state.open });
+        this.setState({ isExpanded: !this.state.isExpanded });
     },
     render: function() {
         return (
             <div>
                 <h1 onClick={this.handleClickExpand}>Pinned Messages List</h1>
-                { this.state.open ?
+                { this.state.isExpanded ?
                     this.props.pinnedLog.map(function (messageObj, i) { // Re-read and understand how you're binding functions here
                         var mouseEnter = this.mouseOver.bind(this, i);
                         var mouseLeave = this.mouseOut.bind(this, i);
@@ -45,7 +45,7 @@ var PinnedMessagesList = React.createClass({
                                     text={messageObj.message}
                                     messageKey={messageObj.message}
                                     senderName={messageObj.senderName}
-                                    dateSent={utils.getAndFormatCurrentDate()} // TODO rendering Messages on SendMessageContainer causes dateSent to be re-rendered
+                                    dateSent={messageObj.dateSent} // TODO rendering Messages on SendMessageContainer causes dateSent to be re-rendered
                                 >
                                 </Message>
                             </div>

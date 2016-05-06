@@ -22,19 +22,9 @@ function MessageText(props) {
 
 var Message = React.createClass({
     getInitialState: function() {
-        var isPinned;
-        if (this.props.isPinned) {
-            isPinned = true;
-        } else {
-            isPinned = false;
-        }
         return { hover: false,
-                 pinned: isPinned
+                 pinned: this.props.isPinned
         };
-    },
-    componentWillReceiveNewProps: function(nextProps) {
-        var isPinned = nextProps.isPinned;
-        this.setState({ pinned: isPinned })
     },
     mouseOver: function() {
         this.setState({hover: true});
@@ -59,6 +49,7 @@ var Message = React.createClass({
                 <div>{this.props.senderName}</div>
                 <div>
                     <MessageText text={this.props.text} />
+
                     { !this.state.pinned ? // check if it's pinned first, then if it's being hovered on. if it's pinned, then leave the icon highlighted
                             this.state.hover ? <img src="./app/data/images/icon-pin-hover.png"
                                               onClick={this.handleClick} />

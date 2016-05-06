@@ -1,5 +1,6 @@
 var React = require('react');
 var Conversation = require('../components/Conversation');
+var utils = require('../utils/utils');
 
 var ConversationContainer = React.createClass({
     getInitialState: function() {
@@ -18,7 +19,11 @@ var ConversationContainer = React.createClass({
     },
     updateLog: function() {
         var currentLog = this.state.chatLog;
-        currentLog.push(this.state.text);
+        currentLog.push({
+            message: this.state.text,
+            isPinned: false,
+            dateSent: utils.getAndFormatCurrentDate()
+        });
         this.setState({ chatLog: currentLog });
     },
     handleKeyPress: function(event) {
@@ -29,14 +34,24 @@ var ConversationContainer = React.createClass({
         this.resetText();
     },
     // Handle pinning and unpinning messages
-    handleClickPin: function(i, props) { // shit is happening here with the keys
+    handleClickPin: function(i, props) {
         var currPinnedLog = this.state.pinnedLog;
-        currPinnedLog.push({
+        currPinnedLog.unshift({
             messageKey: props.messageKey,
             senderName: props.senderName,
-            message: props.text
+            message: props.text,
+            dateSent: props.dateSent
         });
-        this.setState({ pinnedLog: currPinnedLog});
+        this.setState({ pinnedLog: currPinnedLog });
+
+        // find the corresponding message in ChatHistory and change its "isPinned" to true
+        var currLog = this.state.chatLog;
+        currLog.forEach(function(obj) {
+            if (obj.message === props.messageKey) {
+                obj.isPinned = true;
+            }
+        });
+        this.setState({ chatLog: currLog });
     },
     handleUnclickPin: function(i, props) {
         // Remove from PinnedMessagesList
@@ -49,6 +64,15 @@ var ConversationContainer = React.createClass({
 
         // Update the pinnedLog
         this.setState({pinnedLog: updatedPinnedLog});
+
+        // Update the ChatHistory too if unpinning by changing corresponding message's "isPinned" to false
+        var currLog = this.state.chatLog;
+        currLog.forEach(function(obj) {
+            if (obj.message === props.messageKey) {
+                obj.isPinned = false;
+            }
+        });
+        this.setState({ chatLog: currLog });
     },
     render: function() {
         return (

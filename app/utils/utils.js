@@ -11,7 +11,7 @@ var utils = {
 
         return new Date().getTime();
     },
-    getAndFormatCurrentDate: function(date) {
+    getAndFormatCurrentDate: function() {
 
         var d = new Date();
         var hours = d.getHours();
