@@ -28,9 +28,8 @@ var PinnedMessagesList = React.createClass({
                     var mouseLeave = this.mouseOut.bind(this, i);
                     var boundClick = this.handleClickPin.bind(this, i);
                     var boundUnclick = this.handleUnclickPin.bind(this, i);
-                    console.log(messageObj.messageKey + "is now at ith spot: " + i);
                     return (
-                        <div key={i}
+                        <div key={messageObj.message}
                              onMouseEnter={mouseEnter}
                              onMouseLeave={mouseLeave}>
                             <Message

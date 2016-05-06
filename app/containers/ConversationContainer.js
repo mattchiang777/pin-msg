@@ -44,7 +44,6 @@ var ConversationContainer = React.createClass({
         // Find the correct message here and remove it
         var currPinnedLog = this.state.pinnedLog;
         var updatedPinnedLog = currPinnedLog.filter(function(msg) {
-            console.log(props.messageKey);
             return msg.messageKey !== props.messageKey;
         });
 
