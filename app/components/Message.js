@@ -3,7 +3,7 @@
  */
 
 var React = require('react');
-var PinContainer = require('../containers/PinContainer');
+var PropTypes = React.PropTypes;
 
 function ProfilePicture(props) {
     // hard-coded
@@ -23,7 +23,6 @@ function MessageText(props) {
 var Message = React.createClass({
     getInitialState: function() {
         var isPinned;
-        console.log("initial-rendering");
         if (this.props.isPinned) {
             isPinned = true;
         } else {
@@ -40,7 +39,6 @@ var Message = React.createClass({
         this.setState({hover: false});
     },
     handleClick: function() {
-        // if pinned, highlight the pin icon -- Functionality of toggling causing a message to be pinned or unpinned is missing right now
         this.setState({pinned: !this.state.pinned}, function() {
             if (this.state.pinned) {
                 this.props.onClickPin(this.props); // binding/passing props
@@ -73,22 +71,34 @@ var Message = React.createClass({
     }
 });
 
-/*
+Message.propTypes = {
+    onClickPin: PropTypes.func.isRequired,
+    onUnclickPin: PropTypes.func.isRequired,
+    text: PropTypes.string.isRequired,
+    senderName: PropTypes.string.isRequired,
+    dateSent: PropTypes.string.isRequired,
+
+    isPinned: PropTypes.bool,
+    messageKey: PropTypes.string
+};
+
+/* From ChatHistory
  onClickPin={boundClick}
  onUnclickPin={boundUnclick}
  text={message}
  key={i}
  messageKey={message}
  senderName={this.props.senderName}
- isPinned={false}
  dateSent={utils.getAndFormatCurrentDate()} // rendering Messages on SendMessageContainer causes dateSent to be re-rendered
- ref={'message' + i}
+ ref={'message' + i}>
  */
 
 /* From PinnedMessagesList
+ onClickPin={boundClick}
+ onUnclickPin={boundUnclick}
  text={messageObj.message}
+ messageKey={messageObj.message}
  senderName={messageObj.senderName}
- key={i}
  isPinned={true}
  dateSent={utils.getAndFormatCurrentDate()}
  */

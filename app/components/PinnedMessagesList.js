@@ -1,4 +1,5 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 var Message = require('./Message');
 var utils = require('../utils/utils');
 
@@ -33,11 +34,11 @@ var PinnedMessagesList = React.createClass({
                             <Message
                                 onClickPin={boundClick}
                                 onUnclickPin={boundUnclick}
+                                isPinned={true}
                                 text={messageObj.message}
                                 messageKey={messageObj.message}
                                 senderName={messageObj.senderName}
-                                isPinned={true}
-                                dateSent={utils.getAndFormatCurrentDate()} // rendering Messages on SendMessageContainer causes dateSent to be re-rendered
+                                dateSent={utils.getAndFormatCurrentDate()} // TODO rendering Messages on SendMessageContainer causes dateSent to be re-rendered
                             >
                             </Message>
                         </div>
@@ -48,8 +49,16 @@ var PinnedMessagesList = React.createClass({
     }
 });
 
+PinnedMessagesList.propTypes = {
+    pinnedLog: PropTypes.array.isRequired,
+    onClickPin: PropTypes.func.isRequired,
+    onUnclickPin: PropTypes.func.isRequired,
+};
+
 /*
- props.pinnedLog
+ pinnedLog={props.pinnedLog}
+ onClickPin={props.onClickPin}
+ onUnclickPin={props.onUnclickPin}
  */
 
 module.exports = PinnedMessagesList;

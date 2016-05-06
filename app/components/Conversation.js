@@ -1,4 +1,5 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 var Header = require('./Header');
 var ChatHistory = require('./ChatHistory');
 var SendMessageContainer = require('../containers/SendMessageContainer');
@@ -22,6 +23,17 @@ function Conversation(props) {
     )
 }
 
+Conversation.propTypes = {
+    chatLog: PropTypes.array.isRequired,
+    pinnedLog: PropTypes.array.isRequired,
+    onTextChange: PropTypes.func.isRequired,
+    onPressEnterKey: PropTypes.func.isRequired,
+    onClickSend: PropTypes.func.isRequired,
+    onClickPin: PropTypes.func.isRequired,
+    onUnclickPin: PropTypes.func.isRequired,
+    senderName: PropTypes.string.isRequired
+};
+
 /* props
  chatLog={this.state.chatLog}
  pinnedLog={this.state.pinnedLog}
@@ -29,6 +41,7 @@ function Conversation(props) {
  onPressEnterKey={this.handleKeyPress}
  onClickSend={this.handleClickSend}
  onClickPin={this.handleClickPin}
+ onUnclickPin={this.handleUnclickPin}
  senderName="Matthew Chiang"
  */
 

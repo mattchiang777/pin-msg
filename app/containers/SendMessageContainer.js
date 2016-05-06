@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var PropTypes = React.PropTypes;
 var Message = require('../components/Message');
 
 var SendMessageContainer = React.createClass({
@@ -33,6 +34,12 @@ var SendMessageContainer = React.createClass({
         );
     }
 });
+
+SendMessageContainer.propTypes = {
+    onTextChange: PropTypes.func.isRequired,
+    onPressEnterKey: PropTypes.func.isRequired,
+    onClickSend: PropTypes.func.isRequired
+};
 
 /*
  onTextChange={props.onTextChange}

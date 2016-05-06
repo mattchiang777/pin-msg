@@ -1,7 +1,9 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 var PinnedMessagesList = require('./PinnedMessagesList');
 
-function ViewPinnedMessages(props) { // could either be a header bar or button icon
+// TODO ViewPinnedMessages can either be a persistent bar or button in ToolBar
+function ViewPinnedMessages(props) {
     return (
         <div>
             <div>View Pinned Messages</div>

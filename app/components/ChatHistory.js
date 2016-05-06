@@ -1,4 +1,5 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 var Message = require('./Message');
 var utils = require('../utils/utils');
 
@@ -32,6 +33,13 @@ var ChatHistory = React.createClass({
         )
     }
 });
+
+ChatHistory.propTypes = {
+    chatLog: PropTypes.array.isRequired,
+    onClickPin: PropTypes.func.isRequired,
+    onUnclickPin: PropTypes.func.isRequired,
+    senderName: PropTypes.string.isRequired
+};
 
 /* props
  chatLog={props.chatLog}
