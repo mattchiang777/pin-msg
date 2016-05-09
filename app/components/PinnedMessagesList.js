@@ -1,7 +1,6 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var Message = require('./Message');
-var utils = require('../utils/utils');
 
 var PinnedMessagesList = React.createClass({
     getInitialState: function() {
@@ -23,6 +22,7 @@ var PinnedMessagesList = React.createClass({
     handleClickExpand: function() {
         this.setState({ isExpanded: !this.state.isExpanded });
     },
+    // TODO can't place the render logic into a helper function
     render: function() {
         return (
             <div>

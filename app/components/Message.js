@@ -22,8 +22,7 @@ function MessageText(props) {
 
 var Message = React.createClass({
     getInitialState: function() {
-        return { hover: false
-        };
+        return { hover: false };
     },
     mouseOver: function() {
         this.setState({hover: true});
@@ -38,6 +37,23 @@ var Message = React.createClass({
             this.props.onClickPin(this.props);
         };
     },
+    // check if it's pinned first, then if it's being hovered on.
+    // if it's pinned already, then leave the icon highlighted
+    renderPinIcon: function() {
+        if (!this.props.isPinned) {
+            if (this.state.hover) {
+                return (
+                    <img src="./app/data/images/icon-pin-hover.png"
+                         onClick={this.handleClick} />
+                )
+            }
+        }  else {
+            return (
+                <img src="./app/data/images/icon-pin-clicked.png"
+                     onClick={this.handleClick} />
+            )
+        }
+    },
     render: function() {
         return (
             <div onMouseEnter={this.mouseOver}
@@ -46,14 +62,7 @@ var Message = React.createClass({
                 <div>{this.props.senderName}</div>
                 <div>
                     <MessageText text={this.props.text} />
-
-                    { !this.props.isPinned ? // check if it's pinned first, then if it's being hovered on. if it's pinned, then leave the icon highlighted
-                            this.state.hover ? <img src="./app/data/images/icon-pin-hover.png"
-                                              onClick={this.handleClick} />
-                                : null
-                        : <img src="./app/data/images/icon-pin-clicked.png"
-                               onClick={this.handleClick} />
-                    }
+                    {this.renderPinIcon()}
                 </div>
                 <div>
                     {this.props.dateSent}

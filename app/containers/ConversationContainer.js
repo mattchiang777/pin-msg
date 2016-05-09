@@ -10,7 +10,7 @@ var ConversationContainer = React.createClass({
             pinnedLog: []
         };
     },
-    // Handle typing a message
+    // Handle typing a message and saving it upon sending
     handleChange: function(event) {
         this.setState({ text: event.target.value });
     },
@@ -65,7 +65,7 @@ var ConversationContainer = React.createClass({
         // Update the pinnedLog
         this.setState({pinnedLog: updatedPinnedLog});
 
-        // Update the ChatHistory too if unpinning by changing corresponding message's "isPinned" to false
+        // Update the ChatHistory too if unpinning by changing the ChatHistory's corresponding message's "isPinned" to false
         var currLog = this.state.chatLog;
         currLog.forEach(function(obj) {
             if (obj.message === props.messageKey) {

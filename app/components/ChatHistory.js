@@ -1,7 +1,6 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var Message = require('./Message');
-var utils = require('../utils/utils');
 
 var ChatHistory = React.createClass({
     handleClickPin: function(i, props) {
@@ -17,7 +16,6 @@ var ChatHistory = React.createClass({
                 {this.props.chatLog.map(function (messageObj, i) { // Re-read and understand how you're binding functions here
                     var boundClick = this.handleClickPin.bind(this, i);
                     var boundUnclick = this.handleUnclickPin.bind(this, i);
-                    console.log(i + ": " + messageObj.isPinned);
                     return (
                         <Message onClickPin={boundClick}
                                  onUnclickPin={boundUnclick}
@@ -26,7 +24,7 @@ var ChatHistory = React.createClass({
                                  isPinned={messageObj.isPinned}
                                  messageKey={messageObj.message}
                                  senderName={this.props.senderName}
-                                 dateSent={messageObj.dateSent} // rendering Messages on SendMessageContainer causes dateSent to be re-rendered
+                                 dateSent={messageObj.dateSent}
                                  ref={'message' + i}>
                         </Message>
                     )
