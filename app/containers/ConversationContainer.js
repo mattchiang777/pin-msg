@@ -17,20 +17,25 @@ var ConversationContainer = React.createClass({
     resetText: function() {
         this.setState({ text: "" });
     },
-    updateLog: function() {
+    updateLog: function(node) {
         var currentLog = this.state.chatLog;
         currentLog.push({
             message: this.state.text,
             isPinned: false,
             dateSent: utils.getAndFormatCurrentDate()
         });
-        this.setState({ chatLog: currentLog });
+        this.setState({ chatLog: currentLog }, function() {
+            this.resizeScroll(node);
+        });
     },
-    handleKeyPress: function(event) {
-        this.handleClickSend(event);
+    resizeScroll: function(node) {
+        node.scrollTop = node.scrollHeight + 1000;
     },
-    handleClickSend: function(SendButton) {
-        this.updateLog();
+    handleKeyPress: function(node) {
+        this.handleClickSend(node);
+    },
+    handleClickSend: function(node) {
+        this.updateLog(node);
         this.resetText();
     },
     // Handle pinning and unpinning messages

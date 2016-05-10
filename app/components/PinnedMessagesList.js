@@ -86,6 +86,8 @@ var styles = {
     tab: {
         borderBottom: '1px solid #e0e0e0',
         boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.06)',
+        // backgroundColor: '#edeff4', // Same bg color as "Load older messages" on FB
+        // hover color: #c4d2e7
     }
 };
 /*

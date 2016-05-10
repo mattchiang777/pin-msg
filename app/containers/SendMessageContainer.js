@@ -6,11 +6,17 @@ var Message = require('../components/Message');
 // TODO make the textarea auto resize upon typing
 var SendMessageContainer = React.createClass({
     handleClickSend: function() { // holy this is crazy right here, lets me use refs here while using the callback from parent
+        userText = this.refs.typeMessageArea.value.replace(/^\s+/, '').replace(/\s+$/, '');
+        if (userText !== '') {
+            // If the message isn't just made up of white spaces, send the message
+            this.clearForm();
+            this.props.onClickSend(this);
+        }
         this.clearForm();
-        this.props.onClickSend(this);
     },
     handleKeyPress: function(event) {
-        if (event.key === 'Enter') {
+        userText = this.refs.typeMessageArea.value.replace(/^\s+/, '').replace(/\s+$/, '');
+        if (event.key === 'Enter' && userText !== '') {
             event.preventDefault();
             this.clearForm();
             this.props.onPressEnterKey(event);

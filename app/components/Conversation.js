@@ -1,27 +1,54 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var PropTypes = React.PropTypes;
 var Header = require('./Header');
 var ChatHistory = require('./ChatHistory');
 var SendMessageContainer = require('../containers/SendMessageContainer');
 var ViewPinnedMessages = require('./ViewPinnedMessages');
 
-function Conversation(props) {
-    return (
-        <div style={styles.conversation}>
-            <Header />
-            <ViewPinnedMessages pinnedLog={props.pinnedLog}
-                                onClickPin={props.onClickPin}
-                                onUnclickPin={props.onUnclickPin} />
-            <ChatHistory chatLog={props.chatLog}
-                         onClickPin={props.onClickPin}
-                         onUnclickPin={props.onUnclickPin}
-                         senderName="Matthew Chiang" />
-            <SendMessageContainer onTextChange={props.onTextChange}
-                                  onPressEnterKey={props.onPressEnterKey}
-                                  onClickSend={props.onClickSend} />
-        </div>
-    )
-}
+var Conversation = React.createClass({
+    resize: function() {
+        var chatHistoryNode = ReactDOM.findDOMNode(this.refs.chatHistory);
+        chatHistoryNode.scrollTop = chatHistoryNode.scrollHeight + 1000;
+    },
+    onPressEnterKey: function() {
+        var chatHistoryNode = ReactDOM.findDOMNode(this.refs.chatHistory);
+        this.props.onPressEnterKey(chatHistoryNode);
+        // this.resize();
+    },
+    onClickSend: function(chatHistoryNode) {
+        var chatHistoryNode = ReactDOM.findDOMNode(this.refs.chatHistory);
+        this.props.onClickSend();
+        // this.resize();
+    },
+    // TODO why are the old props same as the new props already when resizing the scroll area?
+    componentWillUpdate: function(nextProps) {
+        // console.log("this props:" + this.props.chatLog)
+        // console.log(this.props.chatLog)
+        // console.log("next props:" + nextProps.chatLog)
+        // console.log(nextProps.chatLog)
+        // console.log(nextProps.chatLog, this.props.chatLog)
+        return true;
+    },
+    render: function() {
+        return (
+            <div style={styles.conversation}>
+                <Header />
+                <ViewPinnedMessages pinnedLog={this.props.pinnedLog}
+                                    onClickPin={this.props.onClickPin}
+                                    onUnclickPin={this.props.onUnclickPin} />
+                <ChatHistory chatLog={this.props.chatLog}
+                             onClickPin={this.props.onClickPin}
+                             onUnclickPin={this.props.onUnclickPin}
+                             senderName="Matthew Chiang"
+                             ref="chatHistory"/>
+                <SendMessageContainer onTextChange={this.props.onTextChange}
+                                      onPressEnterKey={this.onPressEnterKey}
+                                      onClickSend={this.props.onClickSend} />
+            </div>
+        )
+    }
+});
 
 Conversation.propTypes = {
     chatLog: PropTypes.array.isRequired,
