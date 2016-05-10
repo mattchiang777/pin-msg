@@ -8,7 +8,10 @@ var PropTypes = React.PropTypes;
 function ProfilePicture(props) {
     // hard-coded
     return (
-        <img src="./app/data/images/matthewchiang.jpg"/>
+        <div>
+            <img src="./app/data/images/matthewchiang.jpg"
+                 style={styles.profilePic}/>
+        </div>
     )
 }
 
@@ -44,30 +47,35 @@ var Message = React.createClass({
             if (this.state.hover) {
                 return (
                     <img src="./app/data/images/icon-pin-hover.png"
-                         onClick={this.handleClick} />
+                         onClick={this.handleClick}
+                         style={styles.pinIcon}  />
                 )
             }
         }  else {
             return (
                 <img src="./app/data/images/icon-pin-clicked.png"
-                     onClick={this.handleClick} />
+                     onClick={this.handleClick}
+                     style={styles.pinIcon}  />
             )
         }
     },
     render: function() {
         return (
             <div onMouseEnter={this.mouseOver}
-                 onMouseLeave={this.mouseOut}>
+                 onMouseLeave={this.mouseOut}
+                 style={styles.container}>
                 <ProfilePicture />
-                <div>{this.props.senderName}</div>
-                <div>
-                    <MessageText text={this.props.text} />
-                    {this.renderPinIcon()}
+                <div style={styles.textContainer}>
+                    <div style={styles.date}>
+                        <div>{this.props.dateSent}</div>
+                        { this.props.isPinned && this.state.hover && this.props.inPinnedList ? <div onClick={this.handleClick} style={styles.removePinned}>x</div> : null }
+                    </div>
+                    <div style={styles.profileName}>{this.props.senderName}</div>
+                    <div style={styles.msgText}>
+                        <MessageText text={this.props.text} />
+                        {this.renderPinIcon()}
+                    </div>
                 </div>
-                <div>
-                    {this.props.dateSent}
-                </div>
-                { this.props.isPinned && this.state.hover && this.props.inPinnedList ? <span onClick={this.handleClick}>X</span> : null }
             </div>
         )
     }
@@ -83,6 +91,53 @@ Message.propTypes = {
     isPinned: PropTypes.bool,
     inPinnedList: PropTypes.bool,
     messageKey: PropTypes.string
+};
+
+var styles = {
+    container: {
+        padding: '8px 20px 7px',
+        position: 'relative'
+    },
+    profilePic: {
+        marginTop: '1px',
+        marginRight: '10px',
+        display: 'block',
+        float: 'left',
+        width: '32px',
+        height: '32px',
+        border: '0px'
+    },
+    textContainer: {
+        // float: 'right',
+        lineHeight: '1.34',
+        display: 'block'
+    },
+    profileName: {
+        color: '#3b5998',
+        fontWeight: 'bold',
+        fontSize: '13px'
+    },
+    msgText: {
+        display: 'block',
+        textAlign: 'left',
+        marginLeft: '42px',
+        marginRight: '50px',
+        lineHeight: '1.8'
+    },
+    pinIcon: {
+        marginLeft: '3px',
+        marginBottom: '1px'
+    },
+    date: {
+        color: '#bdc1c9',
+        display: 'inline-block',
+        verticalAlign: 'middle',
+        float: 'right'
+    },
+    removePinned: {
+        float: 'right',
+        cursor: 'pointer'
+    }
 };
 
 /* From ChatHistory

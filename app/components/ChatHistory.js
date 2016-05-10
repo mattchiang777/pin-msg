@@ -11,8 +11,7 @@ var ChatHistory = React.createClass({
     },
     render: function () {
         return (
-            <div>
-                <h1>Chat History Bro</h1>
+            <div style={styles.scrollableArea}>
                 {this.props.chatLog.map(function (messageObj, i) { // Re-read and understand how you're binding functions here
                     var boundClick = this.handleClickPin.bind(this, i);
                     var boundUnclick = this.handleUnclickPin.bind(this, i);
@@ -47,5 +46,21 @@ ChatHistory.propTypes = {
  onUnclickPin={props.onUnclickPin}
  senderName="Matthew Chiang"
  */
+
+var styles = {
+    scrollableArea: {
+        width: '461px',
+        height: '530px',
+        overflowX: 'hidden',
+        overflowY: 'scroll',
+        position: 'relative',
+        wordWrap: 'break-word',
+        // border: '1px solid #e0e0e0',
+        // borderTop: '1px solid #e0e0e0',
+        fontFamily: 'helvetica, arial, sans-serif',
+        fontSize: '12px',
+        color: '#141823'
+    }
+};
 
 module.exports = ChatHistory;

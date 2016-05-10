@@ -1,14 +1,82 @@
 var React = require('react');
 
+// TODO hover darkens and etc. for interactivity
 function Toolbar() {
     return (
-        <div>
-            <button>+ New Message</button>
-            <button><img src="./app/data/images/icon-video.png"/></button>
-            <button><img src="./app/data/images/icon-actions.png"/></button>
-            <button><img src="./app/data/images/icon-search.png"/></button>
+        <div style={styles.toolbar}>
+            <button style={styles.newMsgButton}>
+                <span style={styles.newMsgText}>+ New Message</span>
+            </button>
+            <button style={styles.button}><img src="./app/data/images/icon-video.png"
+                                               style={styles.image}/></button>
+            <button style={styles.button}><img src="./app/data/images/icon-actions.png"
+                                               style={styles.image}/></button>
+            <button style={styles.searchButton}><img src="./app/data/images/icon-search.png"
+                                               style={styles.image}/></button>
         </div>
     )
 }
+
+var styles = {
+    toolbar: {
+        // padding: '19px 20px 0px 0px',
+        position: 'relative',
+        float: 'right',
+        boxShadow: '0px 1px 1px rgba(0, 0, 0, .05)',
+        display: 'inline-block',
+        // vertical-align: 'middle',
+        // borderColor: '#ced0d4',
+        color: '#4b4f56',
+        // background: '#f6f7f9',
+        lineHeight: '22px',
+
+    },
+    newMsgButton: {
+        width: '110.703px',
+        height: '24px',
+        background: '#f6f7f9',
+        border: '1px solid',
+        borderColor: '#ced0d4',
+        color: '#4b4f56',
+        fontFamily: 'helvetica, arial, sans-serif',
+        fontWeight: 'bold',
+        borderRadius: '2px 0px 0px 2px'
+    },
+    newMsgText: {
+        bottom: '3px',
+        position: 'relative',
+        verticalAlign: 'middle'
+    },
+    button: {
+        width: '30px',
+        height: '24px',
+        background: '#f6f7f9',
+        borderStyle: 'solid',
+        borderWidth: '1px 1px 1px 0px',
+        borderColor: '#ced0d4',
+        color: '#4b4f56',
+        fontFamily: 'helvetica, arial, sans-serif',
+        fontWeight: 'bold'
+    },
+    searchButton: {
+        width: '30px',
+        height: '24px',
+        background: '#f6f7f9',
+        borderStyle: 'solid',
+        borderWidth: '1px 1px 1px 0px',
+        borderColor: '#ced0d4',
+        color: '#4b4f56',
+        fontFamily: 'helvetica, arial, sans-serif',
+        fontWeight: 'bold',
+        borderRadius: '0px 2px 2px 0px'
+    },
+    image: {
+        width: '11px',
+        height: '11px',
+        bottom: '3px',
+        position: 'relative',
+        verticalAlign: 'middle'
+    }
+};
 
 module.exports = Toolbar;

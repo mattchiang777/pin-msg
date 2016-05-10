@@ -22,11 +22,22 @@ var PinnedMessagesList = React.createClass({
     handleClickExpand: function() {
         this.setState({ isExpanded: !this.state.isExpanded });
     },
-    // TODO can't place the render logic into a helper function
+    // TODO maybe return the whole <p> tag here and increase the darkness of the blur when the pinned tab is open
+    renderPinnedMessagesCount: function() {
+        if (this.state.isExpanded) {
+            return (
+                <span>({this.props.pinnedLog.length}) &#9650;</span>
+            )
+        } else {
+            return (
+                <span>({this.props.pinnedLog.length}) &#9660;</span>
+            )
+        }
+    },
     render: function() {
         return (
-            <div>
-                <h1 onClick={this.handleClickExpand}>Pinned Messages List</h1>
+            <div style={styles.tab}>
+                <p onClick={this.handleClickExpand} style={styles.header}>Pinned Messages List {this.renderPinnedMessagesCount()}</p>
                 { this.state.isExpanded ?
                     this.props.pinnedLog.map(function (messageObj, i) { // Re-read and understand how you're binding functions here
                         var mouseEnter = this.mouseOver.bind(this, i);
@@ -63,6 +74,20 @@ PinnedMessagesList.propTypes = {
     onUnclickPin: PropTypes.func.isRequired,
 };
 
+var styles = {
+    header: {
+        textAlign: 'center',
+        color: '#3b5998',
+        fontWeight: 'bold',
+        fontSize: '13px',
+        cursor: 'pointer',
+        marginTop: '10px'
+    },
+    tab: {
+        borderBottom: '1px solid #e0e0e0',
+        boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.06)',
+    }
+};
 /*
  pinnedLog={props.pinnedLog}
  onClickPin={props.onClickPin}
