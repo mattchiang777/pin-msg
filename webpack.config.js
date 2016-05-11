@@ -16,7 +16,8 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
-            { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
+            // { test: /\.(png|jpe?g)$/, loader: 'url-loader?limit=8192&name=images/[name].[ext]' }
+            { test: /\.(png|jpg)$/, loader: "file-loader?name=img/img-[hash:6].[ext]" }
         ]
     },
     plugins: [HTMLWebpackPluginConfig]

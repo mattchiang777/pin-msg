@@ -1,5 +1,4 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 var PropTypes = React.PropTypes;
 var Message = require('./Message');
 var sampleData = require('../data/data');

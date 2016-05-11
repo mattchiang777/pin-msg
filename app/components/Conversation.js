@@ -22,7 +22,6 @@ var Conversation = React.createClass({
         // this.resize();
     },
     onClickSend: function(chatHistoryNode) {
-        var chatHistoryNode = ReactDOM.findDOMNode(this.refs.chatHistory);
         this.props.onClickSend();
         // this.resize();
     },

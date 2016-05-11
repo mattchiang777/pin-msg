@@ -1,7 +1,5 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 var PropTypes = React.PropTypes;
-var Message = require('../components/Message');
 
 // TODO make the textarea auto resize upon typing
 var SendMessageContainer = React.createClass({

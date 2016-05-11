@@ -5,10 +5,14 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var PropTypes = React.PropTypes;
-var pathToMattPic = require("url?limit=10000!../data/images/matthewchiang.jpg");
-var pathToAlbertPic = require("url?limit=10000!../data/images/alberthu.jpg");
-var pathToPinHoverIcon = require("url?limit=10000!../data/images/icon-pin-hover.png");
-var pathToPinClickedIcon = require("url?limit=10000!../data/images/icon-pin-clicked.png");
+// var pathToMattPic = require("url?limit=8192!../data/images/matthewchiang.jpg");
+// var pathToAlbertPic = require("url?limit=8192!../data/images/alberthu.jpg");
+// var pathToPinHoverIcon = require("url?limit=8192!../data/images/icon-pin-hover.png");
+// var pathToPinClickedIcon = require("url?limit=8192!../data/images/icon-pin-clicked.png");
+var pathToMattPic = require("../data/images/matthewchiang.jpg");
+var pathToAlbertPic = require("../data/images/alberthu.jpg");
+var pathToPinHoverIcon = require("../data/images/icon-pin-hover.png");
+var pathToPinClickedIcon = require("../data/images/icon-pin-clicked.png");
 
 function ProfilePicture(props) {
     // hard-coded

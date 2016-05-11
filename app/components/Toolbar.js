@@ -1,7 +1,7 @@
 var React = require('react');
-var pathToVideoIcon = require("url?limit=10000!../data/images/icon-video.png");
-var pathToActionsIcon = require("url?limit=10000!../data/images/icon-actions.png");
-var pathToSearchIcon = require("url?limit=10000!../data/images/icon-search.png");
+var pathToVideoIcon = require("../data/images/icon-video.png");
+var pathToActionsIcon = require("../data/images/icon-actions.png");
+var pathToSearchIcon = require("../data/images/icon-search.png");
 
 
 // TODO hover darkens and etc. for interactivity
