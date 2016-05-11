@@ -3,6 +3,7 @@
  */
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var PropTypes = React.PropTypes;
 
 function ProfilePicture(props) {
@@ -33,11 +34,24 @@ var Message = React.createClass({
     mouseOut: function() {
         this.setState({hover: false});
     },
+    // TODO flash upon pinning and unpinning
+    // flash: function(elem) {
+    //     elem.style.opacity = 0;
+    //     elem.style.background = "yellow";
+    //     console.log('how many clicks');
+    //     elem.style.background = "#fff";
+    //     elem.style.transition = "background 1000ms";
+    //     elem.style.opacity = 1;
+    //     requestAnimationFrame(flash);
+    // },
     handleClick: function() {
+        var elem = ReactDOM.findDOMNode(this);
         if (this.props.isPinned) { // if it's pinned now, unpin it
             this.props.onUnclickPin(this.props); // binding/passing props
+            // requestAnimationFrame(this.flash(elem));
         } else { // if it's unpinned now, pin it
             this.props.onClickPin(this.props);
+            // requestAnimationFrame(this.flash(elem));
         };
     },
     // check if it's pinned first, then if it's being hovered on.

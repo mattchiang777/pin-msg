@@ -48,9 +48,9 @@ var styles = {
         verticalAlign: 'middle'
     },
     button: {
+        background: '#f6f7f9',
         width: '30px',
         height: '24px',
-        background: '#f6f7f9',
         borderStyle: 'solid',
         borderWidth: '1px 1px 1px 0px',
         borderColor: '#ced0d4',
@@ -59,9 +59,9 @@ var styles = {
         fontWeight: 'bold'
     },
     searchButton: {
+        background: '#f6f7f9',
         width: '30px',
         height: '24px',
-        background: '#f6f7f9',
         borderStyle: 'solid',
         borderWidth: '1px 1px 1px 0px',
         borderColor: '#ced0d4',
@@ -77,6 +77,18 @@ var styles = {
         position: 'relative',
         verticalAlign: 'middle'
     }
+    // hover: {
+    //     backgroundColor: "#e9ebee",
+    //     width: '30px',
+    //     height: '24px',
+    //     borderStyle: 'solid',
+    //     borderWidth: '1px 1px 1px 0px',
+    //     borderColor: '#ced0d4',
+    //     color: '#4b4f56',
+    //     fontFamily: 'helvetica, arial, sans-serif',
+    //     fontWeight: 'bold'
+    //
+    // }
 };
 
 module.exports = Toolbar;
