@@ -7,6 +7,8 @@ var ReactDOM = require('react-dom');
 var PropTypes = React.PropTypes;
 var pathToMattPic = require("url?limit=10000!../data/images/matthewchiang.jpg");
 var pathToAlbertPic = require("url?limit=10000!../data/images/alberthu.jpg");
+var pathToPinHoverIcon = require("url?limit=10000!../data/images/icon-pin-hover.png");
+var pathToPinClickedIcon = require("url?limit=10000!../data/images/icon-pin-clicked.png");
 
 function ProfilePicture(props) {
     // hard-coded
@@ -66,14 +68,14 @@ var Message = React.createClass({
         if (!this.props.isPinned) {
             if (this.state.hover) {
                 return (
-                    <img src="./app/data/images/icon-pin-hover.png"
+                    <img src={pathToPinHoverIcon}
                          onClick={this.handleClick}
                          style={styles.pinIcon}  />
                 )
             }
         }  else {
             return (
-                <img src="./app/data/images/icon-pin-clicked.png"
+                <img src={pathToPinClickedIcon}
                      onClick={this.handleClick}
                      style={styles.pinIcon}  />
             )
