@@ -83,7 +83,7 @@ var styles = {
         fontFamily: 'helvetica, arial, sans-serif',
         fontSize: '12px',
         color: '#141823',
-        margin: '0px',
+        margin: '0px auto',
         padding: '0px'
     }
 };
