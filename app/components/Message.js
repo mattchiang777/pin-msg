@@ -5,15 +5,17 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var PropTypes = React.PropTypes;
+var pathToMattPic = require("url?limit=10000!../data/images/matthewchiang.jpg");
+var pathToAlbertPic = require("url?limit=10000!../data/images/alberthu.jpg");
 
 function ProfilePicture(props) {
     // hard-coded
     return (
         <div>
             {props.senderName === "Matthew Chiang" ?
-                <img src="./app/data/images/matthewchiang.jpg"
+                <img src={pathToMattPic}
                      style={styles.profilePic}/>
-                : <img src="./app/data/images/alberthu.jpg"
+                : <img src={pathToAlbertPic}
                        style={styles.profilePic}/>
             }
         </div>

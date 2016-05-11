@@ -1,4 +1,8 @@
 var React = require('react');
+var pathToVideoIcon = require("url?limit=10000!../data/images/icon-video.png");
+var pathToActionsIcon = require("url?limit=10000!../data/images/icon-actions.png");
+var pathToSearchIcon = require("url?limit=10000!../data/images/icon-search.png");
+
 
 // TODO hover darkens and etc. for interactivity
 function Toolbar() {
@@ -7,11 +11,11 @@ function Toolbar() {
             <button style={styles.newMsgButton}>
                 <span style={styles.newMsgText}>+ New Message</span>
             </button>
-            <button style={styles.button}><img src="./app/data/images/icon-video.png"
+            <button style={styles.button}><img src={pathToVideoIcon}
                                                style={styles.image}/></button>
-            <button style={styles.button}><img src="./app/data/images/icon-actions.png"
+            <button style={styles.button}><img src={pathToActionsIcon}
                                                style={styles.image}/></button>
-            <button style={styles.searchButton}><img src="./app/data/images/icon-search.png"
+            <button style={styles.searchButton}><img src={pathToSearchIcon}
                                                style={styles.image}/></button>
         </div>
     )
