@@ -10,8 +10,12 @@ function ProfilePicture(props) {
     // hard-coded
     return (
         <div>
-            <img src="./app/data/images/matthewchiang.jpg"
-                 style={styles.profilePic}/>
+            {props.senderName === "Matthew Chiang" ?
+                <img src="./app/data/images/matthewchiang.jpg"
+                     style={styles.profilePic}/>
+                : <img src="./app/data/images/alberthu.jpg"
+                       style={styles.profilePic}/>
+            }
         </div>
     )
 }
@@ -78,7 +82,7 @@ var Message = React.createClass({
             <div onMouseEnter={this.mouseOver}
                  onMouseLeave={this.mouseOut}
                  style={styles.container}>
-                <ProfilePicture />
+                <ProfilePicture senderName={this.props.senderName}/>
                 <div style={styles.textContainer}>
                     <div style={styles.date}>
                         <div>{this.props.dateSent}</div>

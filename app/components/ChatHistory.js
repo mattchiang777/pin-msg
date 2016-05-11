@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var PropTypes = React.PropTypes;
 var Message = require('./Message');
+var sampleData = require('../data/data');
 
 var ChatHistory = React.createClass({
     handleClickPin: function(i, props) {
@@ -10,9 +11,29 @@ var ChatHistory = React.createClass({
     handleUnclickPin: function(i, props) {
         this.props.onUnclickPin(i, props);
     },
-    render: function () {
+    renderSampleData: function(messageObj, i) {
+        var boundClick = this.handleClickPin.bind(this, i);
+        var boundUnclick = this.handleUnclickPin.bind(this, i);
+            return (
+                <Message onClickPin={boundClick}
+                         onUnclickPin={boundUnclick}
+                         text={messageObj.message}
+                         key={i}
+                         isPinned={false}
+                         messageKey={messageObj.message}
+                         senderName={messageObj.senderName}
+                         dateSent={messageObj.dateSent}
+                         ref={'message' + i}>
+                </Message>
+            )
+        },
+    render: function() {
         return (
             <div style={styles.scrollableArea}>
+                {sampleData.sampleLog.map(function (messageObj, i) {
+                    return this.renderSampleData(messageObj, i)
+                    }, this)
+                }
                 {this.props.chatLog.map(function (messageObj, i) { // Re-read and understand how you're binding functions here
                     var boundClick = this.handleClickPin.bind(this, i);
                     var boundUnclick = this.handleUnclickPin.bind(this, i);
@@ -29,6 +50,9 @@ var ChatHistory = React.createClass({
                         </Message>
                     )
                 }, this)}
+                { this.props.clickedFiller ? sampleData.fillerLog.map(function (messageObj, i) {
+                    return this.renderSampleData(messageObj, i)
+                }, this) : null}
             </div>
         )
     }
@@ -38,7 +62,9 @@ ChatHistory.propTypes = {
     chatLog: PropTypes.array.isRequired,
     onClickPin: PropTypes.func.isRequired,
     onUnclickPin: PropTypes.func.isRequired,
-    senderName: PropTypes.string.isRequired
+    senderName: PropTypes.string.isRequired,
+
+    clickedFiller: PropTypes.bool
 };
 
 /* props
@@ -46,6 +72,7 @@ ChatHistory.propTypes = {
  onClickPin={props.onClickPin}
  onUnclickPin={props.onUnclickPin}
  senderName="Matthew Chiang"
+ clickedFiller
  */
 
 var styles = {

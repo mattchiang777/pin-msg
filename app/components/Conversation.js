@@ -7,10 +7,15 @@ var SendMessageContainer = require('../containers/SendMessageContainer');
 var ViewPinnedMessages = require('./ViewPinnedMessages');
 
 var Conversation = React.createClass({
-    resize: function() {
-        var chatHistoryNode = ReactDOM.findDOMNode(this.refs.chatHistory);
-        chatHistoryNode.scrollTop = chatHistoryNode.scrollHeight + 1000;
+    getInitialState: function() {
+        return {
+            clickedFiller: false
+        }
     },
+    // resize: function() {
+    //     var chatHistoryNode = ReactDOM.findDOMNode(this.refs.chatHistory);
+    //     chatHistoryNode.scrollTop = chatHistoryNode.scrollHeight + 1000;
+    // },
     onPressEnterKey: function() {
         var chatHistoryNode = ReactDOM.findDOMNode(this.refs.chatHistory);
         this.props.onPressEnterKey(chatHistoryNode);
@@ -20,6 +25,9 @@ var Conversation = React.createClass({
         var chatHistoryNode = ReactDOM.findDOMNode(this.refs.chatHistory);
         this.props.onClickSend();
         // this.resize();
+    },
+    handleFillerClick: function() {
+        this.setState({ clickedFiller: true })
     },
     // TODO why are the old props same as the new props already when resizing the scroll area?
     componentWillUpdate: function(nextProps) {
@@ -41,10 +49,13 @@ var Conversation = React.createClass({
                              onClickPin={this.props.onClickPin}
                              onUnclickPin={this.props.onUnclickPin}
                              senderName="Matthew Chiang"
-                             ref="chatHistory"/>
+                             ref="chatHistory"
+                             clickedFiller={this.state.clickedFiller} />
                 <SendMessageContainer onTextChange={this.props.onTextChange}
                                       onPressEnterKey={this.onPressEnterKey}
                                       onClickSend={this.props.onClickSend} />
+                <button className="btn btn-default"
+                        onClick={this.handleFillerClick}>Render Filler Messages</button>
             </div>
         )
     }
