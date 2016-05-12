@@ -21,12 +21,14 @@ var Conversation = React.createClass({
         this.props.onPressEnterKey(chatHistoryNode);
         // this.resize();
     },
-    onClickSend: function(chatHistoryNode) {
-        this.props.onClickSend();
+    onClickSend: function() {
+        var chatHistoryNode = ReactDOM.findDOMNode(this.refs.chatHistory);
+        this.props.onClickSend(chatHistoryNode);
         // this.resize();
     },
     handleFillerClick: function() {
-        this.setState({ clickedFiller: true })
+        var chatHistoryNode = ReactDOM.findDOMNode(this.refs.chatHistory);
+        this.props.onFillerClick(chatHistoryNode);
     },
     // TODO why are the old props same as the new props already when resizing the scroll area?
     componentWillUpdate: function(nextProps) {
@@ -47,7 +49,6 @@ var Conversation = React.createClass({
                 <ChatHistory chatLog={this.props.chatLog}
                              onClickPin={this.props.onClickPin}
                              onUnclickPin={this.props.onUnclickPin}
-                             senderName="Matthew Chiang"
                              ref="chatHistory"
                              clickedFiller={this.state.clickedFiller} />
                 <SendMessageContainer onTextChange={this.props.onTextChange}
@@ -68,7 +69,8 @@ Conversation.propTypes = {
     onClickSend: PropTypes.func.isRequired,
     onClickPin: PropTypes.func.isRequired,
     onUnclickPin: PropTypes.func.isRequired,
-    senderName: PropTypes.string.isRequired
+
+    onFillerClick: PropTypes.func
 };
 
 /*

@@ -1,14 +1,23 @@
 var React = require('react');
 var Conversation = require('../components/Conversation');
 var utils = require('../utils/utils');
+var sampleData = require('../data/data');
 
 var ConversationContainer = React.createClass({
     getInitialState: function() {
+        var initialChat = this.renderSampleChat();
         return {
             text: "",
-            chatLog: [],
+            chatLog: initialChat,
             pinnedLog: []
         };
+    },
+    renderSampleChat: function() {
+        var arr = [];
+        sampleData.sampleLog.map(function (messageObj, i) {
+            arr.push(messageObj);
+        });
+        return arr;
     },
     // Handle typing a message and saving it upon sending
     handleChange: function(event) {
@@ -22,7 +31,8 @@ var ConversationContainer = React.createClass({
         currentLog.push({
             message: this.state.text,
             isPinned: false,
-            dateSent: utils.getAndFormatCurrentDate()
+            dateSent: utils.getAndFormatCurrentDate(),
+            senderName: "Matthew Chiang"
         });
         this.setState({ chatLog: currentLog }, function() {
             this.resizeScroll(node);
@@ -79,6 +89,15 @@ var ConversationContainer = React.createClass({
         });
         this.setState({ chatLog: currLog });
     },
+    handleFillerClick: function(node) {
+        var currentLog = this.state.chatLog;
+        sampleData.fillerLog.forEach(function (messageObj, i) {
+            currentLog.push(messageObj);
+        });
+        this.setState({ chatLog: currentLog }, function() {
+            this.resizeScroll(node);
+        });
+    },
     render: function() {
         return (
                 <div>
@@ -89,7 +108,7 @@ var ConversationContainer = React.createClass({
                                    onClickSend={this.handleClickSend}
                                    onClickPin={this.handleClickPin}
                                    onUnclickPin={this.handleUnclickPin}
-                                   senderName="Matthew Chiang" />
+                                   onFillerClick={this.handleFillerClick} />
                 </div>
             )
     }
