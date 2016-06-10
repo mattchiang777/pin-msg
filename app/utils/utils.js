@@ -5,7 +5,7 @@ function addZero(i) {
     return i;
 }
 
-var utils = {
+let utils = {
     // TODO Need to figure out a way to get unique keys
     getUniqueKey: function() {
 
@@ -13,10 +13,13 @@ var utils = {
     },
     getAndFormatCurrentDate: function() {
 
-        var d = new Date();
-        var hours = d.getHours();
-        var minutes = d.getMinutes();
-        var amOrPm = "am";
+        let d = new Date();
+        // let month = d.getMonth() + 1;
+        // let day = d.getDate();
+        let hours = d.getHours();
+        let minutes = d.getMinutes();
+        let amOrPm = "am";
+        console.log(d);
 
         // convert to readable am/pm format
         if (hours > 12) {

@@ -4,7 +4,7 @@ var SampleData = {
             message: "hey brokowski",
             messageKey: "m1",
             senderName: "Albert Hu",
-            dateSent: "8:45pm"
+            dateSent: "6/10, 8:45pm"
         },
         m2 = {
             message: "yo you there dood?",

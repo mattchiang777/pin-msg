@@ -11,7 +11,7 @@ var PropTypes = React.PropTypes;
 // var pathToPinClickedIcon = require("url?limit=8192!../data/images/icon-pin-clicked.png");
 var pathToMattPic = require("../data/images/matthewchiang.jpg");
 var pathToAlbertPic = require("../data/images/alberthu.jpg");
-var pathToPinHoverIcon = require("../data/images/icon-pin-hover.png");
+var pathToPinHoverIcon = require("../data/images/icon-pin.png");
 var pathToPinClickedIcon = require("../data/images/icon-pin-clicked.png");
 
 function ProfilePicture(props) {

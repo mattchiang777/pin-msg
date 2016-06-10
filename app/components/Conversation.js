@@ -54,8 +54,9 @@ var Conversation = React.createClass({
                 <SendMessageContainer onTextChange={this.props.onTextChange}
                                       onPressEnterKey={this.onPressEnterKey}
                                       onClickSend={this.props.onClickSend} />
-                <button className="btn btn-default"
-                        onClick={this.handleFillerClick}>Render Filler Messages</button>
+                { /*<button className="btn btn-default"
+                        onClick={this.handleFillerClick}>Render Filler Messages</button> */
+                        }
             </div>
         )
     }
