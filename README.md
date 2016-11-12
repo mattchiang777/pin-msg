@@ -1,4 +1,4 @@
-# pin-msg
+# pinning
 
 ## Prototype for pinning messages on Facebook chat
 
